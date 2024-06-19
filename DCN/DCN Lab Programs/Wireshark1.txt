@@ -1,0 +1,34 @@
+Trace packets using Wireshark for HTTP and Answer the following Questions
+The Basic HTTP GET/response interaction
+Use URL: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html
+    1. Is your browser running HTTP version 1.0 or 1.1? What version of HTTP is the 
+server running?
+    2. What languages does your browser indicate that it can accept from the server?
+    3. What is the status code returned from the server to your browser?
+    4. When was the HTML file, that you are retrieving last modified at the server?
+    5. How many bytes of content are being returned to your browser?
+The HTTP CONDITIONAL GET/response interaction
+Use URL : http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html
+    6. Inspect the contents of the first HTTP GET request from your browser to the server. Do you see an “IF-MODIFIED-SINCE” line in the HTTP GET?
+    7. Inspect the contents of the server response. Did the server explicitly return the contents of the file? How can you tell?
+    8. Now inspect the contents of the second HTTP GET request from your browser to the server. Do you see an “IF-MODIFIED-SINCE:” line in the HTTP GET? If so, what information follows the “IF-MODIFIED-SINCE:” header?
+    9. What is the HTTP status code and phrase returned from the server in response to this second HTTP GET? Did the server explicitly return the contents of   the file? Explain.
+
+Trace packets Using Wireshark for HTTP and Answer the following Questions
+For Retrieving Long Documents use
+URL : http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html
+    1. How many HTTP GET request messages were sent by your browser?
+    2. How many data-containing TCP segments were needed to carry the single HTTPResponse ?
+    3. What is the status code and phrase associated with the response to the HTTP GET Request ?
+    4. Are there any HTTP status lines in the transmitted data associated with a TCP reassembled segments of a PDU?
+For HTML Documents with Embedded Objects use
+URL: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html
+    5. How many HTTP GET request messages were sent by your browser? To which
+Internet addresses were these GET requests sent?
+    6. Can you tell whether your browser downloaded the two images serially, or
+whether they were downloaded from the two web sites in parallel? Explain.
+For HTTP Authentication use
+Username: wireshark-students Password: “network”
+URL: http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html
+    7. What is the server’s response (status code and phrase) in response to the initial HTTP GET message from your browser?
+When does your browser send the HTTP GET message for the second time, what new field is included in the HTTP GET message?
