@@ -7,7 +7,7 @@ def bfs(graph):
     visited[src] = 1
 
     while queue:
-        node = queue.pop(0)  # Dequeue a node from the queue
+        node = queue.pop(0)  # Dequeue a node from the queue 
         print(node)  
 
         # Explore neighbors of the current node

@@ -9,32 +9,32 @@ def calculate_prims_mst(n, m, g):
         adj[v].append((u, w))
 
     # Initialize arrays
-    key = [float('inf')] * (n + 1)
-    mst = [False] * (n + 1)
+    weights = [float('inf')] * (n + 1)
+    visited = [False] * (n + 1)
     parent = [-1] * (n + 1)
 
     # Main algorithm
     src = 1
-    key[src] = 0
+    weights[src] = 0
     for _ in range(1, n + 1):
         mini = float('inf')
         for j in range(1, n + 1):
-            if not mst[j] and key[j] < mini:
-                mini = key[j]
+            if not visited[j] and weights[j] < mini:
+                mini = weights[j]
                 u = j
 
-        mst[u] = True
+        visited[u] = True
         for neighbor, weight in adj[u]:
             v = neighbor
             w = weight
-            if not mst[v] and w < key[v]:
-                key[v] = w
+            if not visited[v] and w < weights[v]:
+                weights[v] = w
                 parent[v] = u
 
     # Form MST
     ans_mst = []
     for i in range(src + 1, n + 1):
-        ans_mst.append(((parent[i], i), key[i]))
+        ans_mst.append(((parent[i], i), weights[i]))
 
     return ans_mst
 

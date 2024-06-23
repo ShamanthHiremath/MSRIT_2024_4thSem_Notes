@@ -1,6 +1,6 @@
 def merge(arr, s, e):
     mid = s + (e - s) // 2
-    length1 = mid - s + 1
+    length1 = mid + 1 - s 
     length2 = e - mid
 
     left = arr[s:mid+1]
