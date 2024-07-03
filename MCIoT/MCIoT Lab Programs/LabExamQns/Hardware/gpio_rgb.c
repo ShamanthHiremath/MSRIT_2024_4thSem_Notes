@@ -52,6 +52,12 @@ int main (void)
         DrvGPIO_ClrBit(E_GPA,14); // GPA14 = Red,   0 : on, 1 : off
         DrvSYS_Delay(1000000);			  
         
+        // set RGBled to on	 
+        DrvGPIO_ClrBit(E_GPA,12); // GPA12 = Blue,  0 : on, 1 : off
+        DrvGPIO_ClrBit(E_GPA,13); // GPA13 = Green, 0 : on, 1 : off
+        DrvGPIO_ClrBit(E_GPA,14); // GPA14 = Red,   0 : on, 1 : off
+        DrvSYS_Delay(1000000);
+
         // set RGBled to off	 
         DrvGPIO_SetBit(E_GPA,12); // GPA12 = Blue,  0 : on, 1 : off
         DrvGPIO_SetBit(E_GPA,13); // GPA13 = Green, 0 : on, 1 : off
