@@ -54,10 +54,10 @@ int32_t main (void){
 
 	UNLOCKREG();
 	DrvSYS_Open(48000000);
-	LOCKREG();			 	
+	LOCKREG();
 
  	while(1) {
-        DrvSYS_Delay(500);	 
+        DrvSYS_Delay(500);
 	    val=val++ ;
 	    seg_display(val);			     // write 1 to clear the flag
 	}
