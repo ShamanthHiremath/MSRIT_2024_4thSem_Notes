@@ -6,10 +6,12 @@
 #include "NUC1xx-LB_002\LCD_Driver.h"
 
 void LCDcallbackINT0(){
+	Initial_panel();
+	clr_all_panel();
 	print_lcd(0, "Smpl_LCD_Text   ");
 	DrvSYS_Delay(2000000);
-	clr_all_panel();
 }
+
 void LEDcallbackINT1(){
 	DrvGPIO_ClrBit(E_GPC, 12); 
 	DrvSYS_Delay(300000);	   
@@ -28,12 +30,10 @@ int main (void){
 
 	DrvGPIO_Open(E_GPC, 12, E_IO_OUTPUT);
 	DrvGPIO_SetBit(E_GPC, 12);	
-	
-   	Initial_panel();
-	clr_all_panel();
 
 	DrvGPIO_Open(E_GPB, 15, E_IO_INPUT);
 	DrvGPIO_Open(E_GPB, 14, E_IO_INPUT);
+
     DrvGPIO_EnableEINT1(E_IO_BOTH_EDGE, E_MODE_EDGE, LEDcallbackINT1);
 	DrvGPIO_EnableEINT0(E_IO_BOTH_EDGE, E_MODE_EDGE, LCDcallbackINT0); 
   	while(1){
