@@ -9,4 +9,5 @@ func1
 	MOVS R1,#08
 	BL func2
 	pop{PC}
-    END
+stop b stop
+	END
