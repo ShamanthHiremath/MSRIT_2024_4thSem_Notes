@@ -13,8 +13,12 @@ void LCDcallbackINT0(){
 }
 
 void LEDcallbackINT1(){
+	DrvGPIO_Open(E_GPC, 12, E_IO_OUTPUT);
+	DrvGPIO_SetBit(E_GPC, 12);
+
 	DrvGPIO_ClrBit(E_GPC, 12); 
-	DrvSYS_Delay(300000);	   
+	DrvSYS_Delay(300000);
+		   
 	DrvGPIO_SetBit(E_GPC, 12); 
 	DrvSYS_Delay(300000);
 }
@@ -49,10 +53,7 @@ you have that small wire right connecting that to GPC14 and GND you will get the
 int main (void){
 
 	UNLOCKREG();
-	DrvSYS_Open(48000000);
-
-	DrvGPIO_Open(E_GPC, 12, E_IO_OUTPUT);
-	DrvGPIO_SetBit(E_GPC, 12);	
+	DrvSYS_Open(48000000);	
 
 	DrvGPIO_Open(E_GPB, 15, E_IO_INPUT);
 	DrvGPIO_Open(E_GPB, 14, E_IO_INPUT);
