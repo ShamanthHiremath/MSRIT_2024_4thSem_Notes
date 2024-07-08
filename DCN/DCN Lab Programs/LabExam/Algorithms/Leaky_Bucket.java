@@ -5,16 +5,16 @@ import java.util.Scanner;
 public class Leaky_Bucket {
     public static void main(String[] args) {
         
-        int a[] = new int[20]; // Array to store packet sizes
-        int buck_rem = 0; // Remaining bucket capacity
-        int buck_cap = 4; // Bucket capacity
-        int rate = 3; // Transmission rate
-        int sent, recv; // Variables to store sent and received packet sizes
-
         Scanner sc = new Scanner(System.in);
         
         System.out.print("Enter the number of packets:");
         int n = sc.nextInt(); // Number of packets
+        
+        int a[] = new int[n]; // Array to store packet sizes
+        int buck_rem = 0; // Remaining bucket capacity
+        int buck_cap = 4; // Bucket capacity
+        int rate = 3; // Transmission rate
+        int sent, recv; // Variables to store sent and received packet sizes
 
         System.out.println("Enter the packet_size of each packet:");
         for (int i = 1; i <= n; i++) {
