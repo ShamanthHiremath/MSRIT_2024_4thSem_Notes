@@ -1,0 +1,5 @@
+6) A. Write a client-server program using TCP/IP sockets in which client requests for a file by
+sending the file name to the server, and the server sends back the contents of the requested
+file if present
+
+U failing fr!
