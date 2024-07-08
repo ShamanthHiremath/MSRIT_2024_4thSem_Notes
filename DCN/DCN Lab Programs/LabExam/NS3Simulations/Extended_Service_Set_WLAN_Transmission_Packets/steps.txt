@@ -1,0 +1,8 @@
+Copy third.cc to scratch and rename it
+
+Changes:
+
+
+To Run:
+Open terminal in ns-3.39 folder and run the following command:
+./ns3 run filename --vis

@@ -1,0 +1,31 @@
+Copy wifi-simple-adhoc.cc not wifi-adhoc.cc to scratch and rename it
+
+Changes:
+1. Add "header files" from "Traffic-Control.cc"
+2. Add "double simulationTime = 10.0;" in "int main"
+3. Create n Nodes in "c.Create(n);"
+4. Copy and paste "positionAlloc->Add(Vector( , , ) n times in total" and place the node positons
+5. Comment part from 
+"TypeId tid = TypeId::LookupByName" 
+to 
+"Simulator::ScheduleWithContext(source->GetNode()->GetId(),
+                                Seconds(1.0),
+                                &GenerateTraffic,
+                                source,
+                                packetSize,
+                                numPackets,
+                                interPacketInterval);"
+
+6. Copy part from
+"//Flow
+uint16_t port = 7;"
+to
+"std::cout << "  Rx Packets/Bytes:   " << stats[1].rxPackets << " / " << stats[1].rxBytes
+              << std::endl;"
+
+7. Change ("socketType" -> "ns3::TcpSocketFactory" throughout the part from traffic-control.cc) in the pasted part
+8. Change (nodes -> c) throughout
+9. Change (interfaces -> i) throughout 
+10. Change (nodes -> c and Get(1) -> Get(2)) in onoff.Install(nodes.Get(1))
+
+Running:

@@ -10,7 +10,8 @@ public class Client {
 
         Socket sock = new Socket("127.0.0.1", 4000);
         
-        System.out.println("Enter the filename");
+        System.out.println("Enter the filename: ");
+                           // Enter dcn.txt
         BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
         String fname = keyRead.readLine();
 

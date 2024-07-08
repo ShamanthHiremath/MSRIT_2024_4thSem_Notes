@@ -1,0 +1,67 @@
+Copy Traffic-Control.cc to scratch and rename it
+
+Changes:
+1. Comment the part under "using namespace ns3;
+untill
+"int main()"
+2. Comment part under double simulationTime = 10; 
+" std::string transportProt = "Tcp";
+    std::string socketType; "
+3. Comment under CommandLine cmd(__FILE__); 
+" cmd.AddValue("transportProt", "Transport protocol to use: Tcp, Udp", transportProt); "
+4. Leave cmd.Parse() and comment the if else block
+5. Change the no of nodes from 2 to 4 in ("nodes.Create(4);")
+6. Comment " NetDeviceContainer devices;
+    devices = pointToPoint.Install(nodes); "
+7. Comment from
+" TrafficControlHelper tch;
+    tch.SetRootQueueDisc "
+to
+" queue->TraceConnectWithoutContext("PacketsInQueue", MakeCallback(&DevicePacketsInQueueTrace)); "
+8.  Copy 6th comment and change nodes -> nodes.Get(0), nodes.Get(1)
+    NetDeviceContainer devices;
+    devices = pointToPoint.Install(nodes.Get(0),nodes.Get(1));
+add before  "Ipv4InterfaceContainer interfaces = address.Assign(devices);"
+9. Add the following 3 lines
+    " devices = pointToPoint.Install (nodes.Get (1), nodes.Get (2));
+    address.SetBase ("10.1.2.0", "255.255.255.0");
+    interfaces = address.Assign (devices); "
+10. Copy these 8 lines and do necessary changes given in question 
+    " Ipv4AddressHelper address1;
+    address1.SetBase("10.1.3.0", "255.255.255.0");
+
+    NetDeviceContainer devices1;
+    devices1 = pointToPoint.Install(nodes.Get(3),nodes.Get(1));
+    Ipv4InterfaceContainer interfaces1 = address1.Assign(devices1);
+
+    devices1 = pointToPoint.Install (nodes.Get (1), nodes.Get (2));
+    address1.SetBase ("10.1.4.0", "255.255.255.0");
+    interfaces1 = address1.Assign (devices1); "
+11. Add this line from third.cc(line 173)
+    " Ipv4GlobalRoutingHelper::PopulateRoutingTables (); "
+12. Change all ("socketType" -> "ns3::UdpSocketFactory")
+13. Change nodes.Get(0) -> nodes.Get(2)
+14.Scroll down untill InetSocketAddress and Change interfaces " GetAddress(0) -> interfaces.GetAddress(1) "
+15. Change nodes.Get(1) -> nodes.Get(0)
+16. Copy the above changed Flow block starting from uint16_t till apps.Stop()
+17. Change port -> port1 and set 7 -> 9, replace all port -> port1
+In this...
+18. Replace all "ns3::UdpSocketFactory" -> "ns3::TcpSocketFactory" and localAddress -> localAddress1
+19. Replace all (sinkApp -> sinkApp1) and (packetSinkHelper -> packetSinkHelper1)
+20. Comment below line
+    //uint32_t payloadSize = 1448;
+21. Replace all (onoff -> onoff1) and (apps -> apps1)
+22. Replace all rmt -> rmt1 and interfaces -> interfaces1
+23. Replace remoteAddress -> remoteAddress1
+24. Replace nodes.Get(0) -> nodes.Get(3)
+25. Comment below block from
+" uint32_t "
+untill
+Simulator::Destroy(); but not that line
+26. Comment line below "Simulator::Destroy();"
+to
+"return 0;" but not that line
+
+To Run:
+Open terminal in ns-3.39 folder and run the following command:
+./ns3 run filename --vis
