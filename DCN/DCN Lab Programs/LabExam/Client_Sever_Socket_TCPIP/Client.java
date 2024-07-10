@@ -4,6 +4,7 @@
 
 import java.net.*;
 import java.io.*;
+import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) throws Exception {
@@ -12,8 +13,10 @@ public class Client {
         
         System.out.println("Enter the filename: ");
                            // Enter dcn.txt
-        BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
-        String fname = keyRead.readLine();
+        Scanner sc = new Scanner(System.in);
+        String fname = sc.nextLine();
+        // BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
+        // String fname = keyRead.readLine();
 
         OutputStream ostream = sock.getOutputStream();
         PrintWriter pwrite = new PrintWriter(ostream, true);
@@ -28,7 +31,7 @@ public class Client {
         
         pwrite.close();
         socketRead.close();
-        keyRead.close();
+        // keyRead.close();
         sock.close();
     }
 }

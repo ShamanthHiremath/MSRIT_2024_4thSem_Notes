@@ -1,8 +1,10 @@
+Difficulty Level: Medium (Hojayega)
+
 Copy Traffic-Control.cc to scracth and rename it
 
 Changes:
-1. In int main() under double simTime = 10; Change ("Tcp" -> "Udp")
-2. Set to number of nodes as per question
+1. In int main() under double simulationTime = 10; Change ("Tcp" -> "Udp")
+2. Set to number of nodes as per question nodes.Create(2);
 3. Under NetDeviceContainer devices;
 Make ("devices" -> "devices01")
 Make ("Install(nodes)" -> "Install(nodes.Get(0), nodes.Get(1)" ) )
@@ -25,7 +27,7 @@ above
 and
 change address,  Source IP address , devices and interfaces
 8. Examples->tutorials->third.cc->line 173 (Copy below line from there)            "Ipv4GlobalRoutingHelper::PopulateRoutingTables();"
-9. Make sink app 0 to 2(that is your last node)
+9. Make sink app nodes.Get(0) to nodes.Get(2) (that is your last node)
 10. Change interfaces -> interfaces12.GetAdress(1) 
 11. Change Get(1) -> Get(0)
 12.Scroll down to return 0;

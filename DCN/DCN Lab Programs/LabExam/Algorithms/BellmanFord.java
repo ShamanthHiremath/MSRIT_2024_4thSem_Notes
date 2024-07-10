@@ -25,9 +25,12 @@ public class BellmanFord {
             int u = edge[0];
             int v = edge[1];
             int weight = edge[2];
-            if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
+            if (dist[u] != Integer.MAX_VALUE && dist[v] > dist[u] + weight ) {
                 // Negative cycle detected
-                return new int[]{0}; // Returning an array with a single element to indicate negative cycle
+                System.out.println("Negative cycle detected");
+                // exit
+                System.exit(0);
+                // return new int[]{0}; // Returning an array with a single element to indicate negative cycle
             }
         }
 

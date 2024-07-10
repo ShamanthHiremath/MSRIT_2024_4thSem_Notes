@@ -1,3 +1,5 @@
+Difficulty Level: Medium (Aight)
+
 Copy wifi-simple-adhoc.cc not wifi-adhoc.cc to scratch and rename it
 
 Changes:
@@ -15,6 +17,7 @@ to
                                 packetSize,
                                 numPackets,
                                 interPacketInterval);"
+above " Simulator::Run(); "
 
 6. Copy part from
 "//Flow
@@ -22,10 +25,12 @@ uint16_t port = 7;"
 to
 "std::cout << "  Rx Packets/Bytes:   " << stats[1].rxPackets << " / " << stats[1].rxBytes
               << std::endl;"
-
+above " uint32_t packetsDroppedByQueueDisc = 0; "
 7. Change ("socketType" -> "ns3::TcpSocketFactory" throughout the part from traffic-control.cc) in the pasted part
 8. Change (nodes -> c) throughout
 9. Change (interfaces -> i) throughout 
 10. Change (nodes -> c and Get(1) -> Get(2)) in onoff.Install(nodes.Get(1))
 
-Running:
+To Run:
+Open terminal in ns-3.39 folder and run the following command:
+./ns3 run filename --vis

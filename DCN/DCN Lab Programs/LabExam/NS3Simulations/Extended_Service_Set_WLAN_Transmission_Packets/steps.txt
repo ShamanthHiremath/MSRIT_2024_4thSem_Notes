@@ -1,6 +1,32 @@
+Difficulty Level: Medium (Hojayega)
+
 Copy third.cc to scratch and rename it
 
 Changes:
+1. Add header files from Traffic-Control.cc and delete repeated ones so u r left with (#include "ns3/traffic-control-module.h"
+#include "ns3/flow-monitor-module.h")
+2. Scroll down to int main()
+Add double simulationTime = 10.0;
+3. Scroll down untill
+"UdpEchoServerHelper echoServer(9);"
+and comment from
+" UdpEchoServerHelper echoServer(9); "
+to
+" clientApps.Stop(Seconds(10.0)); "
+untill  
+" Ipv4GlobalRoutingHelper::PopulateRoutingTables(); "
+4. Go to traffic-control.cc and copy part from
+" Flow "
+To
+" Rx Packets/Bytes "
+untill unint32_t packetsDroppedQueueDisc
+and paste it under " Ipv4GlobalRoutingHelper::PopulateRoutingTables(); "
+5. Now in that part
+Change ( socketType -> "ns3::UdpSocketFactory") throughout
+6. Change ( nodes.Get(0) -> csmaNodes.Get(2))
+7. Another socketType change to "ns3::UdpSocketFactory"
+8. Change ( interfaces -> csmaInterfaces)
+9. Change ( nodes.Get(1) -> wifiStaNodes.Get(0))
 
 
 To Run:
