@@ -11,3 +11,8 @@
    ./ns3 run filename --vis
    ```
 8. Simulate the network (Simulation button) then you'll get Flow Monitor Statistics.
+
+## Note:
+Sink Node: End Node
+Interface Node: Middle Node
+App Node: Start Node
