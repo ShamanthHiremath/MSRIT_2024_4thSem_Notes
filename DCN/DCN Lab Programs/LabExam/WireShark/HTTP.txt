@@ -16,17 +16,17 @@ c) What is the status code returned from the server to your browser?
 Ans: 200 OK
 
 d) When was the HTML file, that you are retrieving last modified at the server?
-Ans: 
+Ans: Last-Modified: Wed, 10 Jul 2024 05:59:02 GMT\r\n
 
 e) How many bytes of content are being returned to your browser?
-Ans: 
+Ans: 128
 
 The HTTP CONDITIONAL GET/response interaction
 URL : http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html
 
 f) Inspect the contents of the first HTTP GET request from your browser to the server. Do
 you see an “IF-MODIFIED-SINCE” line in the HTTP GET?
-Ans: Yes
+Ans: Yes, If-Modified-Since: Wed, 10 Jul 2024 05:59:02 GMT\r\n
 
 g) Inspect the contents of the server response. Did the server explicitly return the contents of
 the file? How can you tell?
@@ -35,7 +35,7 @@ Ans: No Content, so explicitly not returned
 h) Now inspect the contents of the second HTTP GET request from your browser to the server. 
 Do you see an “IF-MODIFIED-SINCE:” line in the HTTP GET? If so, what information
 follows the “IF-MODIFIED-SINCE:” header?
-Ans: 
+Ans: If-Modified-Since: Wed, 10 Jul 2024 05:59:02 GMT\r\n 
 
 i) What is the HTTP status code and phrase returned from the server in response to this
 second HTTP GET? Did the server explicitly return the contents of the file? Explain.
@@ -48,26 +48,26 @@ Retrieving Long Documents
 URL: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html
 
 a) How many HTTP GET request messages were sent by your browser?
-Ans: 
+Ans: Count the no of GET responses
 
 b) How many data-containing TCP segments were needed to carry the single HTTP
 Response?
-Ans: 
+Ans: Go to TCP Response [TCP Segment Len: 4861]
 
 c) What is the status code and phrase associated with the response to the HTTP GET
 Request?
-Ans: 
+Ans: Status Code: 200, [Status Code Description: OK]
 
 HTML Documents with Embedded Objects
 http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html
 
 d) How many HTTP GET request messages were sent by your browser? To which Internet
 addresses were these GET requests sent?
-Ans: 
+Ans: Count the no of GET responses after restarting wireshark (Here 3)
 
 e) Can you tell whether your browser downloaded the two images serially, or whether they
 were downloaded from the two web sites in parallel? Explain.
-Ans: 
+Ans: Two different GET Responses sent for images (Pearson and 8E cover)
 
 HTTP Authentication
 URL:
@@ -78,8 +78,8 @@ password: network
 
 f) What is the server’s response (status code and phrase) in response to the initial HTTP
 GET message from your browser?
-Ans: 
+Ans: Status Code: 401 [Status Code Description: Unauthorized]
 
 g) When your browser sends the HTTP GET message for the second time, what new field is
 included in the HTTP GET message?
-Ans: 
+Ans: Comapre the first unauthorised GET request for the server and the GET request after adding credentials in the HTTP field. Ull see changes in STATUS CODE, DESCRIPTION, ETag, Line Based text Data

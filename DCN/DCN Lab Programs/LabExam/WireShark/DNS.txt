@@ -2,44 +2,55 @@
 URL: http://www.ietf.org
 
 a) Locate the DNS query and response messages. Are they sent over UDP or TCP?
-Ans: 
+Ans: UDP
+Standard query response 0x9f14 A example.org A 93.184.215.14
+User Datagram Protocol
 
 b) What is the destination port for the DNS query message? What is the source port of DNS
 response message?
-Ans: 
+Ans: Destination port for the DNS query Destination Port: 53
+Source port of DNS response message Source Port: 53
 
 c) To what IP address is the DNS query message sent? Determine the IP address of your
 local DNS server (Hint: nmcli). Are these two IP addresses the same?
-Ans: 
+Ans: Internet Protocol Version 4, Src: 172.1.6.133, Dst: 172.1.2.2
+It is ofcourse the same
 
 d) Examine the DNS query message. What “Type” of DNS query is it? Does the query
 message contain any “answers”?
-Ans: 
+Ans: Go to DNS Field of query message under queries csp-reporting.cloudflare.com: type A, class IN
+Answer RRs: 0
 
 e) Examine the DNS response message. How many “answers” are provided? What does each
 of these answers contain?
-Ans: 
+Ans: Go to DNS Field of query response message and click on answers
+Answer RRs: 2
 
 f) Consider the subsequent TCP SYN packetsent by your host. Does the destination IP address 
 of the SYN packet correspond to any of the IP addresses provided in the DNS response
 message?
-Ans: 
+Ans: Go to the query request field and check for response packet no.
+Note down the answer IP Address in the packet no. query response sent in DNS field Ex:122
+Apply TCP Filter and look for the next packet no. (123) which has SYN but not ACK
+Compare the dest IP Address of both packets
+It should be the same as the IP Address of website ietf.org 
 
 g) This web page contains images. Before retrieving each image, does your host issue new
 DNS queries?
-Ans: 
+Ans: (Not included for exam)
+Doesnt not issue new DNS
 
 Use nslookup –type=NS mit.edu and answer the following
 
 h) To what IP address is the DNS query message sent? Is this the IP address of your default
 local DNS server?
-Ans: 
+Ans: Both are same
 
-i) Examine the DNS query message. What “Type” of DNS query is it? Does the query
-message contain any “answers”?
-Ans: 
+i) Examine the DNS query message. What “Type” of DNS query is it? Does the query message contain any “answers”?
+Ans: Go to DNS Quey Message and scroll down
+Type: AAAA (IPv6 Address) (28)
+Answer RRs: 0
 
-j) Examine the DNS response message. What MIT name servers does the response message
-provide? Does this response message also provide the IP addresses of the MIT name
+j) Examine the DNS response message. What MIT name servers does the response message provide? Does this response message also provide the IP addresses of the MIT name
 servers?
-Ans: 
+Ans: Go to answers and note the urls which will be the same as nslookup command reponse 
