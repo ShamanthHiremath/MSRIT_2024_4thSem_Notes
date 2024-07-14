@@ -1,0 +1,35 @@
+Trace Packets using Wireshark for DHCP and Answer the following Questions:
+
+Use ipconfig/release and ipconfig/renew commands.
+
+1.	Are DHCP messages sent over UDP or TCP?
+Ans:
+
+2.	What is the link-layer (e.g., Ethernet) address of your host?
+Ans: 
+
+3.	What values in the DHCP discover message differentiate this message from the DHCP request message?
+Ans: 
+
+4.	What is the value of the Transaction-ID in each of the first four discover/Offer/Request/ACK) DHCP messages? What are 
+the values of the Transaction-ID in the second set (Request/ACK) of DHCP messages? What is the purpose of the Transaction-ID field?
+Ans: 
+
+5.	A host uses DHCP to obtain an IP address, among other things. But a host’s IP address is not confirmed until the end of the four-message exchange! If the IP address is not set until the end of the four-message exchange, then what values are used in the IP datagrams in the four-message exchange? For each of the four DHCP messages (Discover/Offer/ Request/ACK DHCP), indicate the source and destination IP addresses that are carried in the encapsulating IP datagram.
+Ans: 
+
+6.	What is the IP address of your DHCP server?
+Ans: 
+
+7.	What IP address is the DHCP server offering to your host in the DHCP Offer message? Indicate which DHCP message contains the offered DHCP address.
+Ans: 
+
+8.	What values in the trace indicate the absence of a relay agent? Is there a relay agent in your experiment? If so what is the IP address of the agent?
+Ans: 
+
+9.	Explain the purpose of the lease time. What is the lease time value in your experiment?
+Ans: 
+
+10.	What is the purpose of the DHCP release message? Does the DHCP server issue an acknowledgment of receipt of the client’s DHCP request? 
+Ans: 
+
