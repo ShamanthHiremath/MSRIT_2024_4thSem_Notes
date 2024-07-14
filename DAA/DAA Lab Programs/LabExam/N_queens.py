@@ -1,101 +1,106 @@
-#N QUEENS
-print ("Enter the number of queens")
-N = int(input())
+# def isSafe(board, row, col, n):
+    
+#     # Check right side of the row
+#     for i in range(col, n):
+#         if board[row][i]:
+#             return False
+        
+#     # Check upper right diagonal
+#     i, j = row, col
+#     while i >= 0 and j < n:
+#         if board[i][j]:
+#             return False
+#         i -= 1
+#         j += 1
+        
+#     # Check lower right diagonal
+#     i, j = row, col
+#     while i < n and j < n:
+#         if board[i][j]:
+#             return False
+#         i += 1
+#         j += 1
 
-#chessboard
-#NxN matrix with all elements 0
-board = [[0]*N for _ in range(N)]
+#     return True
 
-def is_attack(i, j):
-    #checking if there is a queen in row or column
-    for k in range(0,N):
-        if board[i][k]==1 or board[k][j]==1:
-            return True
-    #checking diagonals
-    for k in range(0,N):
-        for l in range(0,N):
-            if (k+l==i+j) or (k-l==i-j):
-                if board[k][l]==1:
-                    return True
-    return False
-
-def N_queen(n,ind):
-    #if n is 0, solution found
-    if n==0:
-        return True
-    for i in range(0,N):
-        for j in range(0,N):
-            if i==0 and j in ind :
-              continue
-            '''checking if we can place a queen here or not
-            queen will not be placed if the place is being attacked
-            or already occupied'''
-            if (not(is_attack(i,j))) and (board[i][j]!=1):
-                board[i][j] = 1
-                #recursion
-                #wether we can put the next queen with this arrangment or not
-                if N_queen(n-1 , ind)==True:
-                    return True
-                board[i][j] = 0
-
-    return False
-ind =[]
-while True:
-
-  if N_queen(N,ind):
-    for i in board:
-      print (i)
-    for i in range(N):
-      if board[0][i] == 1:
-        ind.append(i)
-    board = [[0]*N for _ in range(N)]
-    print()
-  else:
-    break
+# def nQueens(board, n, column):
+#     if column == -1:
+#         return True
+    
+#     for i in range(n):
+#         if board[i][column] == 0:
+#             if isSafe(board, i, column, n):
+#                 board[i][column] = 1
+#                 if nQueens(board, n, column - 1):
+#                     return True
+#                 board[i][column] = 0  
+    
+#     return False
 
 
+# n = int(input("Enter the chess board dimension N: "))
+# # Initialize the chess board
+# board = [[0] * n for _ in range(n)]
 
-def isSafe(arr, row, col, n):
-   
+# if nQueens(board, n, n -1):
+#     for row in board:
+#         print(row)
+# else:
+#     print("No solution found")
+
+
+# To print all solutions
+
+def isSafe(board, row, col, n):
+    # Check right side of the row
     for i in range(col, n):
-        if arr[row][i]:
+        if board[row][i]:
             return False
-  
+        
+    # Check upper right diagonal
     i, j = row, col
     while i >= 0 and j < n:
-        if arr[i][j]:
+        if board[i][j]:
             return False
         i -= 1
         j += 1
-
+        
+    # Check lower right diagonal
     i, j = row, col
     while i < n and j < n:
-        if arr[i][j]:
+        if board[i][j]:
             return False
         i += 1
         j += 1
 
     return True
 
-def nQueens(arr, n, column):
+def nQueens(board, n, column, solutions):
     if column == -1:
-        return True
+        solutions.append([row[:] for row in board])
+        return
     
     for i in range(n):
-        if arr[i][column] == 0:
-            if isSafe(arr, i, column, n):
-                arr[i][column] = 1
-                if nQueens(arr, n, column - 1):
-                    return True
-                arr[i][column] = 0  
-    
-    return False
+        if board[i][column] == 0:
+            if isSafe(board, i, column, n):
+                board[i][column] = 1
+                nQueens(board, n, column - 1, solutions)
+                board[i][column] = 0
 
-n = 4 
-arr = [[0] * n for _ in range(n)]
+def print_board(board):
+    for row in board:
+        print(" ".join(str(x) for x in row))
+    print()
 
-if nQueens(arr, n, n -1):
-    for row in arr:
-        print(row)
+
+n = int(input("Enter the chess board dimension N: "))
+board = [[0] * n for _ in range(n)]
+solutions = []
+nQueens(board, n, n - 1, solutions)
+
+if solutions:
+    print(f"Found {len(solutions)} solutions for {n}-Queens problem:")
+    for solution in solutions:
+        print_board(solution)
 else:
     print("No solution found")

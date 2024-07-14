@@ -1,24 +1,37 @@
-def can_form_subset(arr, target):
-    def check_subset(arr, target, index):
-        if target == 0:
-            return True
+ansarr = []
+ans = []
+def copy_arr (arr):
+    for i in range(len(arr)):
+        ans.append(arr[i])
+def subset_sum(arr, index, target, dp):
+    if target == 0:
+        if len(ans) == 0:
+            copy_arr(ansarr)
+        return True
+    if index > len(arr) - 1:
+        return False
 
-        if index >= len(arr):
-            return False
+    if dp[index][target] != -1:
+        return dp[index][target]
 
-        include = check_subset(arr, target - arr[index], index + 1)
-        exclude = check_subset(arr, target, index + 1)
+    include = False
+    if arr[index] <= target:
+        ansarr.append(index)
+        include = subset_sum(arr, index + 1, target - arr[index], dp)
+        ansarr.pop()
+    exclude = subset_sum(arr, index + 1, target, dp)
 
-        # Return True if either include or exclude gives True
-        return include or exclude
+    result = include or exclude
+    dp[index][target] = result
+    return dp[index][target]
 
-    return check_subset(arr, target, 0)
-
-# Get user input for the array and target
-arr = list(map(int, input("Enter the numbers in the array separated by spaces: ").split()))
+arr = list(map(int, input("Enter the list of numbers (separated by spaces): ").split()))
 target = int(input("Enter the target sum: "))
 
-if can_form_subset(arr, target):
-    print(f"Yes, there is a way to pick some numbers from {arr} that add up to {target}.")
+dp = [[-1 for _ in range(target + 1)] for _ in range(len(arr))]
+
+if subset_sum(arr, 0, target, dp):
+    print(f"A subset with sum {target} exists.\nIndex are the following")
+    print(ans)
 else:
-    print(f"No, it's not possible to pick some numbers from {arr} that add up to {target}.")
+    print(f"No subset with sum {target} exists.")

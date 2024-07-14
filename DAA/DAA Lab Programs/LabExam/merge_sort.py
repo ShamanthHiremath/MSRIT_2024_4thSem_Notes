@@ -54,6 +54,7 @@ for i in range(n):
     x = int(input(f"Enter element {i+1}: "))
     arr.append(x)
 
+merge_sort(arr, 0, len(arr)-1)
 # print(merge_sort(arr, 0, len(arr)-1))
 
 print("The sorted array is:", arr)

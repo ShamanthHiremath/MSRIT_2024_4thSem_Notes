@@ -1,7 +1,3 @@
-def make_disjoint_set(parent_root):
-    # Initializes parent roots as themselves, assuming disconnected nodes
-    for i in range(len(parent_root)):
-        parent_root[i] = i
 
 def find_parent(node, parent_root):
     if parent_root[node] != node:
@@ -26,19 +22,21 @@ def union_set(u, v, parent_root, rank):
 def minimum_spanning_tree(edges, n):
     # Sort the edges based on weights (in ascending order)
     edges.sort(key=lambda x: x[2])
-    parent_root = [0] * n
     rank = [0] * n
     path = []
 
     # Create the disjoint sets
-    make_disjoint_set(parent_root)
+    # Initializes parent roots as themselves, assuming disconnected nodes
+    parent_root = [i for i in range(n)]
 
     minimum_weight = 0
+    
     # Kruskal's Algorithm
     for edge in edges:
         u, v, wt = edge
         u -= 1  # Adjusting for 0-based index
         v -= 1  # Adjusting for 0-based index
+        
         u_parent = find_parent(u, parent_root)
         v_parent = find_parent(v, parent_root)
 

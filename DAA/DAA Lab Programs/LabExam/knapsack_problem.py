@@ -2,13 +2,14 @@ def knapsack(weight, value, n, maxWeight):
     # Initialize a 2D list for DP (n x (maxWeight+1))
     dp = [[0] * (maxWeight + 1) for i in range(n)]
 
-    # Base case: Fill the first row (first item)
+    # Base case: Fill the first row (considering only the first item)
     for w in range(weight[0], maxWeight + 1):
         dp[0][w] = value[0]
 
     # Build DP table
     for i in range(1, n):
         for w in range(maxWeight + 1):
+            # Max value obtained either including (the weight of the current item can fit in the knapsack) or excluding (or not fit)
             if weight[i] <= w:
                 dp[i][w] = max(dp[i-1][w], value[i] + dp[i-1][w - weight[i]])
             else:

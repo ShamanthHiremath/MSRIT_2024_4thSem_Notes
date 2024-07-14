@@ -14,19 +14,18 @@ def dijkstra(vertices, edges, source):
     pq = [(0, source)]
     while pq:
         # Fetch minimum most record
-        distnode, topnode = heapq.heappop(pq)
+        dist_node, min_node = heapq.heappop(pq)
 
         # Traverse neighbors/adjacent nodes
-        for neighbor, distance in adj[topnode]:
-            if dist[neighbor] > distnode + distance:
+        for neighbor, distance in adj[min_node]:
+            if dist[neighbor] > dist_node + distance:
                 # Update distance
-                dist[neighbor] = distnode + distance
+                dist[neighbor] = dist_node + distance
                 heapq.heappush(pq, (dist[neighbor], neighbor))
 
     print("Printing the distance of all nodes from the source node: ")
     for i in range(0, vertices):
-        print(f"{i}", end= " ")
-    print("\n", dist)
+        print(f"{source} to {i}: {dist[i]}")
     
     return dist
 

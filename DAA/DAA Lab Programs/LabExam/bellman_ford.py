@@ -10,15 +10,10 @@ def bellmanFord(n, m, src, edges):
                 dist[v] = dist[u] + weight
 
     # Check for negative cycles
-    negative_cycle = False
     for u, v, weight in edges:
         if dist[u] != float('inf') and dist[v] > dist[u] + weight:
-            negative_cycle = True
-            break
-
-    # Optionally handle negative cycle detection
-    # if negative_cycle:
-    #     return [0]  # Negative cycle exists
+            print("Negative cycle detected")
+            exit(0)
 
     return dist
 

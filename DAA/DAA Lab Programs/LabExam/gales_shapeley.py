@@ -6,6 +6,7 @@ def gale_shapley(men_preferences, women_preferences):
     free_men = list(range(num_people))
     women_partner = [-1] * num_people
     men_partner = [-1] * num_people
+    
     # To store the index of the proposals made by each men
     proposals = [0] * num_people
     
@@ -42,6 +43,8 @@ def input_prefernces():
     for i in range(n):
         print(f"Enter the preferences of individual {i+1}:")
         man_pref = []
+        # man_pref = list(map(int,input().split()))
+        # preferences.append(man_pref)
         for j in range(n):
             # print(f"Enter the {j+1} preference of man {i+1} ")
             pref = int(input())
