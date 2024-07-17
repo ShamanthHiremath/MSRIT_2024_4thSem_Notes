@@ -1,3 +1,31 @@
+alg mergesort(arr[a1...an])
+
+if len(arr) <= 1 then return arr 
+
+m <- len(arr) // 2 
+a1 <- arr[1 : m]
+a2 <- arr[m+1: n]
+a1 <- mergesort(a1)
+a2 <- mergesort(a2)
+return merge(a1, a2)
+
+alg merge(a, b)
+
+result <- {} 
+i, j <- 0 
+while i < len(a) and j < len(b) do 
+    if a[i] < b[j] then 
+        add a[i] to result 
+        i <- i+1
+    else 
+        add b[j] to result 
+        j <- j+1
+    end if 
+end while 
+add a[i:len(a)] to result 
+add b[j: len(b)] to result 
+________________________________
+
 alg quicksort(arr[a1...an])
 
 pivot = arr[0]
@@ -124,4 +152,38 @@ for i <- 1 to N do
 end for 
 
 return dp[N][capacity]
+
+________________________________
+
+
+algo bellmanford(graph, src)
+
+dist <- {inf} * N 
+dist(src) <- 0 
+for i : 1 to N-1 do 
+    relax(graph, dist)
+dist' <- dist 
+relax(graph, dist')
+if dist' == dist then return dist 
+else Negative cycle exists
+
+algo relax(graph, dist)
+
+for edge in graph.edges do 
+    if dist(edge.start) != inf then 
+        dist(edge.end) = min(dist(edge.end) , dist(edge.start) + edge.weight)
+
     
+________________________________
+
+algorithm nqueens(board, row)
+
+if row == len(board) then 
+    add board to answers or display.. 
+    return 
+
+for c: 1 to NumCols do 
+    if is_safe(board, row, c) then 
+        board[row][c] = 1 // place a queen 
+        nqueens(board, row+1) 
+        board[row][c] = 0 // backtract i.e remove queen  
