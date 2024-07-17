@@ -1,4 +1,5 @@
 import time
+import math
 
 def merge(arr, s, e):
     mid = s + (e - s) // 2
@@ -64,3 +65,5 @@ end_time = time.time()
 
 print("The sorted array is:", arr)
 print(f"Execution time: {end_time - start_time:.6f} seconds")
+# print(f"O({n} * log{n}) = {math.log(n)} is nearly equal to {end_time - start_time:.6f}")
+print("The time complexity of Merge Sort is O(nlogn).")
