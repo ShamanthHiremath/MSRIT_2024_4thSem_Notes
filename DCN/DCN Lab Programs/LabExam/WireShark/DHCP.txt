@@ -2,34 +2,42 @@ Trace Packets using Wireshark for DHCP and Answer the following Questions:
 
 Use ipconfig/release and ipconfig/renew commands.
 
-1.	Are DHCP messages sent over UDP or TCP?
-Ans:
+1.  Are DHCP messages sent over UDP or TCP?
+Ans: Sent over UDP
 
-2.	What is the link-layer (e.g., Ethernet) address of your host?
-Ans: 
+2.  What is the link-layer (e.g., Ethernet) address of your host?
+Ans: The link-layer address (MAC address) can be found in the Ethernet frame of the DHCP packets("Source" address in the Ethernet header).
+ff: ff: ff: ff: ff
 
 3.	What values in the DHCP discover message differentiate this message from the DHCP request message?
-Ans: 
+Ans: The DHCP Discover message has the "Message type: Discover (1)" option, whereas the DHCP Request message has the "Message type: Request (3)" option in the DHCP options field.
 
-4.	What is the value of the Transaction-ID in each of the first four discover/Offer/Request/ACK) DHCP messages? What are 
+4.	What is the value of the Transaction-ID in each of the first four (discover/Offer/Request/ACK) DHCP messages? What are 
 the values of the Transaction-ID in the second set (Request/ACK) of DHCP messages? What is the purpose of the Transaction-ID field?
-Ans: 
+Ans: TransactionID of first 4 messages is same: 0x12f9e762
+TransactionID of second 4 messages is same but different than 1st 4: 0x38120d67
 
 5.	A host uses DHCP to obtain an IP address, among other things. But a host’s IP address is not confirmed until the end of the four-message exchange! If the IP address is not set until the end of the four-message exchange, then what values are used in the IP datagrams in the four-message exchange? For each of the four DHCP messages (Discover/Offer/ Request/ACK DHCP), indicate the source and destination IP addresses that are carried in the encapsulating IP datagram.
-Ans: 
+Ans: If it is not set, DHCP server uses 0.0.0.0 and client uses 255.255.255.255
+Discover and Request have Src: 0.0.0.0 and Dest: 255.255.255.255
+Offer and ACK haveSrc: 172.1.6.1 and Dest: 172.1.6.99
 
 6.	What is the IP address of your DHCP server?
-Ans: 
+Ans: IP Address of DHCP: 172.1.6.10
 
 7.	What IP address is the DHCP server offering to your host in the DHCP Offer message? Indicate which DHCP message contains the offered DHCP address.
-Ans: 
+Ans: IP Address 172.1.6.99 is offered to the host by the server, (Offer message has it)
 
 8.	What values in the trace indicate the absence of a relay agent? Is there a relay agent in your experiment? If so what is the IP address of the agent?
-Ans: 
+Ans: The absence of a relay agent is indicated by field being 0.0.0.0
+Yes, there is a relay agent, its IP Address is 172.1.6.1
 
 9.	Explain the purpose of the lease time. What is the lease time value in your experiment?
-Ans: 
+Ans: The lease time is the duration for which the DHCP server grants the IP address to the client.
+It is specified in the "IP Address Lease Time" option in the DHCP Offer and DHCP ACK messages.
+Here it is 8 days, 8hrs
 
 10.	What is the purpose of the DHCP release message? Does the DHCP server issue an acknowledgment of receipt of the client’s DHCP request? 
-Ans: 
+Ans: The purpose of the DHCP release message is to inform the DHCP server that the client is releasing its IP address and no longer needs it.
+No, the DHCP server does not issue an acknowledgment for the DHCP release message.
 
