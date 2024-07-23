@@ -172,6 +172,10 @@ algo relax(graph, dist)
 for edge in graph.edges do 
     if dist(edge.start) != inf then 
         dist(edge.end) = min(dist(edge.end) , dist(edge.start) + edge.weight)
+    end if 
+end for 
+
+end 
 
     
 ________________________________
@@ -187,3 +191,7 @@ for c: 1 to NumCols do
         board[row][c] = 1 // place a queen 
         nqueens(board, row+1) 
         board[row][c] = 0 // backtract i.e remove queen  
+    end if 
+end for 
+
+end 
