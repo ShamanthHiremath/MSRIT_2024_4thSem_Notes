@@ -1,10 +1,4 @@
-def dijkstra(vertices, edges, source):
-    # Create adjacency list with vertices and their weights/distances
-    adj = {i: [] for i in range(vertices)}
-    for edge in edges:
-        u, v, d = edge
-        adj[u].append((v, d))
-        adj[v].append((u, d))
+def dijkstra(vertices, graph, source):
     
     dist = [float('inf')] * vertices
     dist[source] = 0
@@ -26,7 +20,7 @@ def dijkstra(vertices, edges, source):
         visited.add(min_node)
 
         # Traverse neighbors/adjacent nodes
-        for neighbor, distance in adj[min_node]:
+        for neighbor, distance in graph[min_node]:
             if neighbor not in visited:
                 new_distance = dist[min_node] + distance
                 if new_distance < dist[neighbor]:
@@ -38,29 +32,44 @@ def dijkstra(vertices, edges, source):
     
     return dist
 
-# Example usage
-vertices = 4
-edges = [
-    [0, 1, 5],
-    [0, 2, 8],
-    [1, 2, 9],
-    [1, 3, 2],
-    [2, 3, 6]
-]
-source = 0
-print(dijkstra(vertices, edges, source))
+def inputEdges(graph):
+    
+    n = int(input("Enter the no. of edges: "))
+
+    print("Enter edge pair as u -> v")
+    for i in range(n):
+        u = int(input(f"Pair {i}: "))
+        v = int(input("->"))
+        dir = int(input("Directed?: "))
+        wt = int(input("Enter weight: "))
+        
+        if u not in graph:
+            graph[u] = []
+        graph[u].append([v, wt])
+
+        if (not dir):
+            if v not in graph:
+                graph[v] = []
+            graph[v].append([u, wt])
+
+
+
+vertices = int(input("\nEnter number of vertices: "))    
+graph = [[] for i in range(vertices)]
+inputEdges(graph)
+
+print("\nAdjacency list: ")
+for i in range(vertices):
+    print(f"{i}: {graph[i]}")
+
+src = int(input("\nEnter source vertex: "))
+print(dijkstra(vertices, graph, src))
 
 # or
 
 # import heapq
 
 # def dijkstra(vertices, edges, source):
-#     # Create adjacency list with vertices and their weights/distances
-#     adj = {i: [] for i in range(vertices)}
-#     for edge in edges:
-#         u, v, d = edge
-#         adj[u].append((v, d))
-#         adj[v].append((u, d))
     
 #     dist = [float('inf')] * vertices
 #     dist[source] = 0
@@ -83,14 +92,35 @@ print(dijkstra(vertices, edges, source))
     
 #     return dist
 
-# # Example usage
-# vertices = 4
-# edges = [
-#     [0, 1, 5],
-#     [0, 2, 8],
-#     [1, 2, 9],
-#     [1, 3, 2],
-#     [2, 3, 6]
-# ]
-# source = 0
-# print(dijkstra(vertices,edges,source))
+# def inputEdges(graph):
+    
+#     n = int(input("Enter the no. of edges: "))
+
+#     print("Enter edge pair as u -> v")
+#     for i in range(n):
+#         u = int(input(f"Pair {i}: "))
+#         v = int(input("->"))
+#         dir = int(input("Directed?: "))
+#         wt = int(input("Enter weight: "))
+        
+#         if u not in graph:
+#             graph[u] = []
+#         graph[u].append([v, wt])
+
+#         if (not dir):
+#             if v not in graph:
+#                 graph[v] = []
+#             graph[v].append([u, wt])
+
+
+
+# vertices = int(input("\nEnter number of vertices: "))    
+# graph = [[] for i in range(vertices)]
+# inputEdges(graph)
+
+# print("\nAdjacency list: ")
+# for i in range(vertices):
+#     print(f"{i}: {graph[i]}")
+
+# src = int(input("\nEnter source vertex: "))
+# print(dijkstra(vertices, graph, src))

@@ -50,44 +50,44 @@ def minimum_spanning_tree(edges, n):
     return minimum_weight
 
 def inputEdges():
-    graph = []
-    n = int(input("Enter the no. of edges: "))
-
+    edges = []
+    e = int(input("Enter the no. of edges: "))
     print("Enter edge pair as u -> v")
-    for i in range(n):
+    for i in range(e):
         u = int(input(f"Pair {i}: "))
         v = int(input("->"))
-        # dir = int(input("Directed?: "))
+        dir = int(input("Directed?: "))
         wt = int(input("Enter weight: "))
         
-        # if u not in graph:
-            # graph[u] = []
-        graph.append([u, v, wt])
+        edges.append([u, v, wt])
 
-        # if (not dir):
-        # if v not in graph:
-            # graph[v] = []
-        graph.append([v, u, wt])
+        if (not dir):
+            edges.append([v, u, wt])
+        
+    return edges
 
-# Example usage:
-# Sample input
-edges = [
-    [1, 2, 2],
-    [1, 4, 6],
-    [2, 1, 2],
-    [2, 3, 3],
-    [2, 4, 8],
-    [2, 5, 5],
-    [3, 2, 3],
-    [3, 5, 7],
-    [4, 1, 6],
-    [4, 2, 8],
-    [4, 5, 9],
-    [5, 2, 5],
-    [5, 3, 7],
-    [5, 4, 9]
-]
-n = 5
+# # Example usage:
+# # Sample input
+# edges = [
+#     [1, 2, 2],
+#     [1, 4, 6],
+#     [2, 1, 2],
+#     [2, 3, 3],
+#     [2, 4, 8],
+#     [2, 5, 5],
+#     [3, 2, 3],
+#     [3, 5, 7],
+#     [4, 1, 6],
+#     [4, 2, 8],
+#     [4, 5, 9],
+#     [5, 2, 5],
+#     [5, 3, 7],
+#     [5, 4, 9]
+# ]
+
+
+vertices = int(input("\nEnter number of vertices: "))    
+edges = inputEdges()
 
 # Sample output
-print(minimum_spanning_tree(edges, n))  # Expected output: 16
+print(minimum_spanning_tree(edges, vertices))  # Expected output: 16
