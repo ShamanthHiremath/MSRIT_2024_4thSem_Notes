@@ -34,6 +34,39 @@ change address,  Source IP address , devices and interfaces
 Comment below line
     //std::cout << q->GetStats() << std::endl;
 
+
+Topology:
+
+For 3 nodes: n0, n1, n2
+
+            UDP
+
+      p2p          p2p
+n0 --------- n1 --------- n2
+   devices01    devices12
+
+For 4 nodes: n0, n1, n2, n3
+
+                   UDP
+
+      p2p          p2p          p2p
+n0 --------- n1 --------- n2 --------- n3
+   devices01    devices12    devices23
+
+
+Connections:
+
+0 -> 1   and   1 -> 2
+
+Start (App node) - 0 th Node
+apps.Add(onoff.Install(nodes.Get(0)));
+
+Interface - 1 st Node
+interfaces12.GetAdress(1) 
+
+End (Sink node) - 2nd Node
+sinkApp = packetSinkHelper.Install(nodes.Get(2));
+
 To Run:
 Open terminal in ns-3.39 folder and run the following command:
 ./ns3 run filename --vis

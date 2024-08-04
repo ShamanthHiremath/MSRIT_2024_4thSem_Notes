@@ -3,8 +3,7 @@ Difficulty Level: Medium (Hojayega)
 Copy third.cc to scratch and rename it
 
 Changes:
-1. Add header files from Traffic-Control.cc and delete repeated ones so u r left with (#include "ns3/traffic-control-module.h"
-#include "ns3/flow-monitor-module.h")
+1. Add header files from Traffic-Control.cc (All #include s)
 2. Scroll down to int main()
 Add double simulationTime = 10.0;
 3. Scroll down untill
@@ -13,7 +12,7 @@ and comment from
 " UdpEchoServerHelper echoServer(9); "
 to
 " clientApps.Stop(Seconds(10.0)); "
-untill  
+before 
 " Ipv4GlobalRoutingHelper::PopulateRoutingTables(); "
 4. Go to traffic-control.cc and copy part from
 " Flow "
@@ -32,3 +31,26 @@ Change ( socketType -> "ns3::UdpSocketFactory") throughout
 To Run:
 Open terminal in ns-3.39 folder and run the following command:
 ./ns3 run filename --vis
+
+
+Topology:
+
+// Wifi Nodes to LAN/CSMA Nodes connection at 0 to 1
+
+// n5   n6   n0 --------------  n1   n2   n3
+
+
+Connections:
+
+3 Wifi Nodes (0, 5, 6)
+3 CSMA nodes (1, 2, 3)
+
+0  ->  1 
+
+Start (App node) - 0 th node, wifiStaNodes
+apps.Add(onoff.Install(wifiStaNodes.Get(0)))
+
+Interface - 0 th node, csmaInterfaces
+
+End (Sink Node) - 2 nd node, csmaNodes
+sinkApp = packetSinkHelper.Install(csmaNodes.Get(2));

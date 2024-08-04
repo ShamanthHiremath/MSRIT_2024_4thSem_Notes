@@ -3,11 +3,35 @@ Difficulty Level: Easy (Just a 5 min read and you are good to go)
 Copy "tcp-variants-comparison.cc" to scratch and rename it
 
 Changes:
-1. On line 351 change value of bool tracing to true.
-2. On line 345, you can change value of std::string transport_prot to any of the protocol from lines 366 to 369 (or leave it to "TcpWestwoodPlus").
+1. Scroll down to int main()
+Change value of bool tracing = false to true (line 342)
+2. In the same int main()
+Above bool tracing
+**2 a. In the first run...
+Leave the value of std::string transport_prot to "TcpWestwoodPlus"
+Make no changes...
+**2 b. In the second run...
+Change std::string transport_prot to "TcpNewReno"
+(**Note**)
+You can change the value of "transport_prot" to any of the protocol from the list of the protocols mentioned in lines 366 to 369 (or leave it to "TcpWestwoodPlus")
 3. Run the ns3 program (no need of visualizer i.e. --vis).
-4. Go to ns3 folder and find a .cwnd file, paste all the values from the file in a spreadsheet (Libre-Office) and generate its graph (click insert -> chart -> preferably line graph).
-5. Repeat "step 4" for a ".rtt file."
-6. On line 345 change value of std::string transport_prot to some other protocol and and repeat steps 3, 4 and 5 again.
+To Run:
+Open terminal in ns-3.39 folder and run the following command:
+./ns3 run filename --vis
+4. It will generate 2 files in the ns3 folder (ns3/) with the name "tcp-variants-comparison-<protocol>.cwnd" and "tcp-variants-comparison-<protocol>.rtt" where <protocol> is the value of "transport_prot" in the code.
+5. Go to ns3 folder and find that .cwnd file, copy paste all the values from the file in a spreadsheet (Libre-Office) and generate its graph (click "Insert" -> "Chart" -> "Line" graph).
+6. Repeat "step 5" for a ".rtt file."
+7. In int main()
+On line 345 change value of std::string transport_prot to some other protocol mentioned in the Qn (Here "TcpNewReno") and and repeat steps 2, 3, 4, 5 and 6 again.
 
-Finally you will have 4 graphs as observation/output
+Finally you will have 4 graphs from 2 Runs for output presentations.
+
+Topologies: 
+
+For 3 nodes: n0, n1, n2
+
+    TCP Variants Comparison
+
+      p2p          p2p 
+n0 --------- n1 --------- n2
+

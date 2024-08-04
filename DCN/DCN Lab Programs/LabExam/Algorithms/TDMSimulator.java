@@ -1,7 +1,12 @@
+//  3) B.
+// 11) B.
+// Write a program for Time Division Multiplexing Simulator. Show how the time 
+// division multiplexing technique works
+
 import java.util.Scanner;
 
-public class TDMSimulator {
-    public static void main(String args[]) {
+class TDMSimulator {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter the number of stations (maximum 10): ");
@@ -29,14 +34,16 @@ public class TDMSimulator {
             for (int i = 0; i < numberOfStations; i++) {
                 if (remainingTime[i] > 0) {
                     allStationsDone = false;
-
+                    // If the remaining processing time is greater than the frame size, process for the frame size
                     if (remainingTime[i] > frameSize) {
-                        currentTime += frameSize;
-                        remainingTime[i] -= frameSize;
-                    } else {
-                        currentTime += remainingTime[i];
-                        remainingTime[i] = 0;
-                        turnaroundTime[i] = currentTime;
+                        currentTime += frameSize; // Increment the current time by the frame size
+                        remainingTime[i] -= frameSize; // Decrement the remaining processing time by the frame size
+                    }
+                    // If the remaining processing time is less than or equal to the frame size, process for the remaining time
+                    else {
+                        currentTime += remainingTime[i]; // Increment the current time by the remaining processing time
+                        remainingTime[i] = 0; // Set the remaining processing time to 0
+                        turnaroundTime[i] = currentTime; // Set the turnaround time for the station required to complete the processing
                     }
                 }
             }
@@ -51,6 +58,7 @@ public class TDMSimulator {
         System.out.println("----------------------------------------------------------");
 
         for (int i = 0; i < numberOfStations; i++) {
+            // waiting time = turnaround time - processing time 
             waitingTime[i] = turnaroundTime[i] - processingTime[i];
             totalWaitingTime += waitingTime[i];
             totalTurnaroundTime += turnaroundTime[i];
@@ -64,5 +72,7 @@ public class TDMSimulator {
         System.out.println("----------------------------------------------------------");
         System.out.println("Average Waiting Time: " + averageWaitingTime);
         System.out.println("Average Turnaround Time: " + averageTurnaroundTime);
+
+        sc.close();
     }
 }

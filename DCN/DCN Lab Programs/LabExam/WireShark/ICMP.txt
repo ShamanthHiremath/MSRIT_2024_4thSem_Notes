@@ -1,7 +1,7 @@
 4. Trace Internet Protocol and Internet Control Message Protocol using Wireshark.
 
-1. Apply "icmp" Filter in Wireshark
-2. ping www.msrit.edu
+1. Apply "icmp" Filter in Wireshark and inspect IP Content Field in the packet details window.
+2. ping www.msrit.edu in terminal
 
 a) Select the first ICMP Echo Request message sent by your computer, and expand the Internet 
 Protocol part of the packet in the packet details window. What is the IP address ofyour 
@@ -18,7 +18,7 @@ Payload = Total Len - IP header Len
 
 d) Has this IP datagram been fragmented? Explain how you determined whether or not the
 datagram has been fragmented.
-Ans: No, Cuz the flag of Do Not Fragment is  "Not Set"
+Ans: No, Cuz the flag of Do Not Fragment is  "Set"
 
 e) Which fields in the IP datagram always change from one datagram to the next within this
 series of ICMP messages sent by your computer?
@@ -27,10 +27,12 @@ Ans: Identification, Header CheckSum, Header Length, Flags etc
 f) Which fields stay constant?
 Ans: IP Address, Src Dest, Dest Address, Protocols, Versions, etc
 
+"ping –s 2000 www.msrit.edu"
+
 g) Find the first ICMP Echo Request message that was sent by your computer after you
 changed the Packet Size to 2000 (Use command ping –s 2000 www.msrit.edu to change the 
 MTU of the packet). Has that message been fragmented across more than one IP datagram?
-Ans: Yes, each packet size 2000
+Ans: Yes, each packet size is 2000
 Go to fragments and write the fragment information
 [2 IPv44 Fragments (2008) bytes : #8(1480) ]
 
@@ -39,8 +41,8 @@ header indicates that the datagram been fragmented? What information in the IP h
 indicates whether this is the first fragment versus a latter fragment? How long is this IP
 datagram?
 Ans: Write the info under [2 IPv44 Fragments (2008) bytes : #8(1480) ]
-Fragment Offset tells us whether the fragment is first or later Fragments
-More Fragments Offset tells if there are more fragment
+Fragment Offset tells us whether the fragment is first or later Fragments (If 0 then first fragment, if x then x th fragment)
+More Fragments Offset tells if there are more fragment (If 1 then more fragments, 0 then last fragment)
 Write the size of both the fragments
 Total len: 1452 bytes
 Total len: 548 bytes
@@ -49,4 +51,6 @@ i) What information in the IP header indicates that this is not the first datagr
 there more fragments? How can you tell? What fields change in the IP header between
 the first and second fragment?
 Ans: Fragment offset Flags
+Fragment Offset tells us whether the fragment is first or later Fragments (If 0 then first fragment, if x then x th fragment)
+More Fragments Offset tells if there are more fragment (If 1 then more fragments, 0 then last fragment)
 Identification, Header checksum, header length, total bytes

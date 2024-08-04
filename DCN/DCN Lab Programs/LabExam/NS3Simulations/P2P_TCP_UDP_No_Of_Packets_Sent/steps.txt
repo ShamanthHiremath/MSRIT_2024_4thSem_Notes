@@ -67,3 +67,42 @@ to
 To Run:
 Open terminal in ns-3.39 folder and run the following command:
 ./ns3 run filename --vis
+
+
+Topologies:
+
+      UDP
+n0 -- n1 -- n2
+
+n0     UDP
+   \  
+    n1 --- n2
+   /
+n3     TCP
+
+      TCP
+n3 -- n1 -- n2
+
+Connections:
+
+For, 0 -> 1 -> 2 - UDP
+
+Start (App Node) - 0 th Node
+apps.Add(onoff.Install(nodes.Get(0)));
+
+Interface - 1 st Node
+rmt(interfaces.GetAddress(1), port);
+
+End (Sink Node) - 2 nd Node
+sinkApp = packetSinkHelper.Install(nodes.Get(2));
+
+3 -> 1 -> 2 - TCP
+
+Start (App1 Node) - 3 rd Node
+apps1.Add(onoff1.Install(nodes.Get(3)));
+
+Interface - 1 st Node
+rmt1(interfaces1.GetAddress(1), port1);
+
+End (Sink1 Node) - 2 nd Node
+sinkApp1 = packetSinkHelper1.Install(nodes.Get(2));

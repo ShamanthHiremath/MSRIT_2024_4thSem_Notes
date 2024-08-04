@@ -10,6 +10,7 @@ b) What is the destination port for the DNS query message? What is the source po
 response message?
 Ans: Destination port for the DNS query Destination Port: 53
 Source port of DNS response message Source Port: 53
+Both should be same
 
 c) To what IP address is the DNS query message sent? Determine the IP address of your
 local DNS server (Hint: nmcli). Are these two IP addresses the same?
@@ -30,7 +31,7 @@ f) Consider the subsequent TCP SYN packetsent by your host. Does the destination
 of the SYN packet correspond to any of the IP addresses provided in the DNS response
 message?
 Ans: Go to the query request field and check for response packet no.
-Note down the answer IP Address in the packet no. query response sent in DNS field Ex:122
+Note down the IP Address of the packet no. of query response sent in DNS field Ex:122
 Apply TCP Filter and look for the next packet no. (123) which has SYN but not ACK
 Compare the dest IP Address of both packets
 It should be the same as the IP Address of website ietf.org 
@@ -47,10 +48,19 @@ local DNS server?
 Ans: Both are same
 
 i) Examine the DNS query message. What “Type” of DNS query is it? Does the query message contain any “answers”?
-Ans: Go to DNS Quey Message and scroll down
+Ans: Go to DNS Query Message and scroll down
 Type: AAAA (IPv6 Address) (28)
 Answer RRs: 0
 
-j) Examine the DNS response message. What MIT name servers does the response message provide? Does this response message also provide the IP addresses of the MIT name
-servers?
-Ans: Go to answers and note the urls which will be the same as nslookup command reponse 
+j) Examine the DNS response message. What MIT name servers does the response message provide? Does this response message also provide the IP addresses of the MIT name servers?
+Ans: Go to answers and note the urls which will be the same as nslookup command reponse
+Non-authoritative answer:
+mit.edu nameserver = eur5.akam.net
+mit.edu nameserver = asia2.akam.net
+mit.edu nameserver = ns1-173.akam.net
+mit.edu nameserver = use5.akam.net
+mit.edu nameserver = use2.akam.net
+mit.edu nameserver = usw2.akam.net
+mit.edu nameserver = asia1.akam.net
+mit.edu nameserver = ns1-37.akam.net
+

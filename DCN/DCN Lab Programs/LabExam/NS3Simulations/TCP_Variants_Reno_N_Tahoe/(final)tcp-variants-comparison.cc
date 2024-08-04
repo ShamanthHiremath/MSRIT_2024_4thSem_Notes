@@ -1,4 +1,13 @@
 /*
+***************************************************************************************************
+9) B.
+12) B.
+
+Design a wired network with ‘n’ nodes to observe the performance of two TCP 
+variants (Reno and Tahoe). Simulate the designed network and observe the 
+network performance.
+
+
  * Copyright (c) 2013 ResiliNets, ITTC, University of Kansas
  *
  * This program is free software; you can redistribute it and/or modify
@@ -341,7 +350,8 @@ TraceNextRx(std::string &next_rx_seq_file_name, uint32_t nodeId)
 
 int main(int argc, char *argv[])
 { 
-// 1-------------------->run without change then TcpWestwoodPlus to TcpNewReno and run again + graphs(read Procedure.md)
+// 2. **********************************
+// Run without changing transport_prot = "TcpWestwoodPlus" and run again after changing to "TcpNewReno" 
     std::string transport_prot = "TcpNewReno";
     double error_p = 0.0;
     std::string bandwidth = "2Mbps";
@@ -349,7 +359,8 @@ int main(int argc, char *argv[])
     std::string access_bandwidth = "10Mbps";
     std::string access_delay = "45ms";
 
-// 2---------------------->bool tracing: false to true
+// 1. **********************************
+// Bool tracing ( false -> true) this is true in both RUNS
     bool tracing = true;
     std::string prefix_file_name = "TcpVariantsComparison";
     uint64_t data_mbytes = 0;

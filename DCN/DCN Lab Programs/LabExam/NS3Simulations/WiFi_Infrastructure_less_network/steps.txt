@@ -6,7 +6,7 @@ Changes:
 1. Add "header files" from "Traffic-Control.cc"
 2. Add "double simulationTime = 10.0;" in "int main"
 3. Create n Nodes in "c.Create(n);"
-4. Copy and paste "positionAlloc->Add(Vector( , , ) n times in total" and place the node positons
+4. Copy and paste "positionAlloc->Add(Vector( , , ) n times in total" and place the node in the required positions in a graph of x, y, z coordinates
 5. Comment part from 
 "TypeId tid = TypeId::LookupByName" 
 to 
@@ -19,18 +19,49 @@ to
                                 interPacketInterval);"
 above " Simulator::Run(); "
 
-6. Copy part from
+6. Copy
+Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
+from third.cc and paste it above "Simulator::Run();"
+
+7. Copy part from Traffic-Control.cc from
 "//Flow
 uint16_t port = 7;"
 to
 "std::cout << "  Rx Packets/Bytes:   " << stats[1].rxPackets << " / " << stats[1].rxBytes
               << std::endl;"
 above " uint32_t packetsDroppedByQueueDisc = 0; "
-7. Change ("socketType" -> "ns3::TcpSocketFactory" throughout the part from traffic-control.cc) in the pasted part
-8. Change (nodes -> c) throughout
-9. Change (interfaces -> i) throughout 
-10. Change (nodes -> c and Get(1) -> Get(2)) in onoff.Install(nodes.Get(1))
+8. Change ("socketType" -> "ns3::TcpSocketFactory" throughout the part from traffic-control.cc) in the pasted part
+9. Change (nodes -> c) throughout
+10. Change (interfaces -> i) throughout 
+11. Change (nodes -> c and Get(1) -> Get(2)) in apps.Add(onoff.Install(nodes.Get(1)))
 
 To Run:
 Open terminal in ns-3.39 folder and run the following command:
 ./ns3 run filename --vis
+
+
+Topology:
+
+// Wifi Nodes to CSMA Nodes connection at 0 to 2
+
+//    n0 -----------  n1
+//    |               |
+//    |               |
+//    |               |
+//    |               |
+//    |               |
+//    n2 -----------  n3
+
+
+Connections:
+
+n "c nodes"
+
+Start (App node) - 0 th node, c
+apps.Add(onoff.Install(c.Get(0)))
+
+Interface - 0 th node, i
+
+End (Sink Node) - 2 th node, c
+sinkApp = packetSinkHelper.Install(c.Get(2));
+*/

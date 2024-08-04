@@ -1,6 +1,7 @@
 /*
-1) B.
-5) B.
+************************************************************************************************
+2) B.
+6) B.
 
 Design and simulate a wired network with duplex links between ‘n’ nodes with CDR over 
 UDP. Set the queue size vary the bandwidth and find the number of packets dropped.
@@ -112,7 +113,8 @@ int
 main(int argc, char* argv[])
 {
     double simulationTime = 10; // seconds
-    // 1.  Change Tcp -> Udp
+// 1. **********************************
+// Change Tcp -> Udp
     std::string transportProt = "Udp";
     std::string socketType;
 
@@ -130,7 +132,8 @@ main(int argc, char* argv[])
     }
 
     NodeContainer nodes;
-    // 2.   Set to number of nodes as per question
+// 2. **********************************
+// Set to number of nodes as per question
     nodes.Create(3);
 
     PointToPointHelper pointToPoint;
@@ -138,14 +141,16 @@ main(int argc, char* argv[])
     pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));
     pointToPoint.SetQueue("ns3::DropTailQueue", "MaxSize", StringValue("1p"));
 
-    // 3. Make devices-> devices01
-    //    Make Install(nodes) -> Install(nodes.Get(0), nodes.Get(1))
+// 3. **********************************
+//    Make devices-> devices01
+//    Make Install(nodes) -> Install(nodes.Get(0), nodes.Get(1))
     
     NetDeviceContainer devices01;
     devices01 = pointToPoint.Install(nodes.Get(0),nodes.Get(1));
 
-    // 4. Make devices-> devices12
-    //    Make Install(nodes) -> Install(nodes.Get(0), nodes.Get(1))
+// 4. **********************************
+//    Make devices-> devices12
+//    Make Install(nodes) -> Install(nodes.Get(0), nodes.Get(1))
     NetDeviceContainer devices12;
     devices12 = pointToPoint.Install(nodes.Get(1),nodes.Get(2));
 
@@ -153,7 +158,8 @@ main(int argc, char* argv[])
 
     InternetStackHelper stack;
     stack.Install(nodes);
-    // 5.  Comment the below lines
+// 5. **********************************
+// Comment the below lines
 
 /*
     TrafficControlHelper tch;
@@ -174,19 +180,22 @@ main(int argc, char* argv[])
 
 
 
-    // 6. Make address-> address01 , interfaces -> interfaces01 , devices -> devices01
+// 6. **********************************
+// Make address-> address01 , interfaces -> interfaces01 , devices -> devices01
     Ipv4AddressHelper address01;
     address01.SetBase("10.1.1.0", "255.255.255.0");
     Ipv4InterfaceContainer interfaces01 = address01.Assign(devices01);
 
     
-    // 7.  Copy above three lines and Change address,  Source IP address , devices and interfaces
+// 7. **********************************
+// Copy above three lines and Change address,  Source IP address , devices and interfaces
 
     Ipv4AddressHelper address12;
     address12.SetBase("10.1.2.0", "255.255.255.0");
     Ipv4InterfaceContainer interfaces12 = address12.Assign(devices12);
 
-    // 8.  Examples->tutorials->third.cc->line 173 (Copy below line from there)
+// 8. **********************************
+// Examples->tutorials->third.cc->line 173 (Copy below line from there)
 
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
     
@@ -195,7 +204,8 @@ main(int argc, char* argv[])
     Address localAddress(InetSocketAddress(Ipv4Address::GetAny(), port));
     PacketSinkHelper packetSinkHelper(socketType, localAddress);
 
-    //9. Make sink app 0 to 2(that is your last node)
+//9. **********************************
+// Make sink app 0 to 2(that is your last node)
     ApplicationContainer sinkApp = packetSinkHelper.Install(nodes.Get(2));
 
     sinkApp.Start(Seconds(0.0));
@@ -211,12 +221,14 @@ main(int argc, char* argv[])
     onoff.SetAttribute("DataRate", StringValue("50Mbps")); // bit/s
     ApplicationContainer apps;
 
-// 10. Change interfaces -> interfaces12.GetAdress(1) 
+// 10. **********************************
+// Change interfaces -> interfaces12.GetAdress(1) 
     InetSocketAddress rmt(interfaces12.GetAddress(1), port);
     rmt.SetTos(0xb8);
     AddressValue remoteAddress(rmt);
     onoff.SetAttribute("Remote", remoteAddress);
-// 11.  Change Get(1) -> Get(0)
+// 11. **********************************
+// Change Get(1) -> Get(0)
     apps.Add(onoff.Install(nodes.Get(0)));
     apps.Start(Seconds(1.0));
     apps.Stop(Seconds(simulationTime + 0.1));
@@ -288,7 +300,8 @@ main(int argc, char* argv[])
     std::cout << "  Rx Bytes: " << totalPacketsThr << std::endl;
     std::cout << "  Average Goodput: " << thr << " Mbit/s" << std::endl;
     std::cout << std::endl << "*** TC Layer statistics ***" << std::endl;
-    // 12.  Comment below line
-    //std::cout << q->GetStats() << std::endl;
+// 12. **********************************
+// Comment below line
+// std::cout << q->GetStats() << std::endl;
     return 0;
 }

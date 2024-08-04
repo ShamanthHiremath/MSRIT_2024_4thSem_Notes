@@ -3,7 +3,7 @@
 The Basic HTTP GET/response interaction
 URL: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html
 
-Apply "HTTP" Filter
+Apply "HTTP" Filter, Stop running inspect the contents of the very first HTTP GET request from your browser to the server.
 
 a) Is your browser running HTTP version 1.0 or 1.1? What version of HTTP is the server
 running?
@@ -30,7 +30,7 @@ Ans: Yes, If-Modified-Since: Wed, 10 Jul 2024 05:59:02 GMT\r\n
 
 g) Inspect the contents of the server response. Did the server explicitly return the contents of
 the file? How can you tell?
-Ans: No Content, so explicitly not returned
+Ans: Status Code: 304, Not Modified,No Content, so explicitly not returned
 
 h) Now inspect the contents of the second HTTP GET request from your browser to the server. 
 Do you see an “IF-MODIFIED-SINCE:” line in the HTTP GET? If so, what information
@@ -39,7 +39,7 @@ Ans: If-Modified-Since: Wed, 10 Jul 2024 05:59:02 GMT\r\n
 
 i) What is the HTTP status code and phrase returned from the server in response to this
 second HTTP GET? Did the server explicitly return the contents of the file? Explain.
-Ans: 304
+Ans: Status Code: 304, Not Modified,No Content, so explicitly not returned
 
 
 2. Trace Hypertext Transfer Protocol (Part B)
@@ -48,7 +48,7 @@ Retrieving Long Documents
 URL: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html
 
 a) How many HTTP GET request messages were sent by your browser?
-Ans: Count the no of GET responses
+Ans: Count the no of GET requests 
 
 b) How many data-containing TCP segments were needed to carry the single HTTP
 Response?
@@ -67,7 +67,7 @@ Ans: Count the no of GET responses after restarting wireshark (Here 3)
 
 e) Can you tell whether your browser downloaded the two images serially, or whether they
 were downloaded from the two web sites in parallel? Explain.
-Ans: Two different GET Responses sent for images (Pearson and 8E cover)
+Ans: Two different GET Responses sent for images (Pearson and 8E cover) so serially downloaded
 
 HTTP Authentication
 URL:
