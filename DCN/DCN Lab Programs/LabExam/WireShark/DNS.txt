@@ -1,5 +1,7 @@
 3. Trace Packets using Wireshark for DNS and Answer the following Questions
+
 URL: http://www.ietf.org
+Apply the display filter “dns” to display only DNS messages. You should see a series of DNS query and response messages. Answer the following questions:
 
 a) Locate the DNS query and response messages. Are they sent over UDP or TCP?
 Ans: UDP

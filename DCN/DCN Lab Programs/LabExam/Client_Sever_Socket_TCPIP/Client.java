@@ -33,5 +33,6 @@ public class Client {
         socketRead.close();
         // keyRead.close();
         sock.close();
+        sc.close();
     }
 }
