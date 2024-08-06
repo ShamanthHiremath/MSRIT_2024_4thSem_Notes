@@ -3,7 +3,7 @@ def gale_shapley(men_preferences, women_preferences):
     num_people = len(men_preferences)
     
     # Initialize all men and women as free
-    free_men = list(range(num_people))
+    free_men = [i for i in range(num_people)]
     women_partner = [-1] * num_people
     men_partner = [-1] * num_people
     
@@ -32,7 +32,7 @@ def gale_shapley(men_preferences, women_preferences):
                 free_men.append(new_man)
                 
     print("Stable matchings (man -> woman):")
-    for man, woman in enumerate(men_partner):
+    for man, woman in men_partner:
         print(f"Man {man+1} is matched to Woman {woman+1}")
         
     # return men_partner

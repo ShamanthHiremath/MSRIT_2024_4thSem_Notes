@@ -22,7 +22,7 @@ def inputEdges():
     e = int(input("Enter the no. of edges: "))
     print("Enter edge pair as u -> v")
     for i in range(e):
-        u = int(input(f"Pair {i}: "))
+        u = int(input(f"Pair {i+1}: "))
         v = int(input("->"))
         dir = int(input("Directed?: "))
         wt = int(input("Enter weight: "))

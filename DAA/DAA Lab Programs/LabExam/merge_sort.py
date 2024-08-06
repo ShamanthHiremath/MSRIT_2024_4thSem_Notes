@@ -54,8 +54,8 @@ def merge_sort(arr, s, e):
 arr = []
 n = int(input("Enter the size of array: "))
 for i in range(n):
-    x = int(input(f"Enter element {i+1}: "))
-    arr.append(x)
+    num = int(input(f"Enter element {i+1}: "))
+    arr.append(num)
     
     
 start_time = time.time()

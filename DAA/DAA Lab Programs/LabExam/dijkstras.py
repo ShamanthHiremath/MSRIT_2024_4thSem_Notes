@@ -1,15 +1,15 @@
 def dijkstra(vertices, graph, source):
-    
     dist = [float('inf')] * vertices
     dist[source] = 0
     visited = set()
+    previous = [-1] * vertices  # To store the previous node in the path
 
     while len(visited) < vertices:
         # Find the unvisited node with the smallest distance
         min_distance = float('inf')
         min_node = -1
         for i in range(vertices):
-            if i not in visited and dist[i] < min_distance:
+            if i not in visited and min_distance > dist[i]:
                 min_distance = dist[i]
                 min_node = i
         
@@ -22,48 +22,63 @@ def dijkstra(vertices, graph, source):
         # Traverse neighbors/adjacent nodes
         for neighbor, distance in graph[min_node]:
             if neighbor not in visited:
-                new_distance = dist[min_node] + distance
-                if new_distance < dist[neighbor]:
-                    dist[neighbor] = new_distance
+                if dist[neighbor] > dist[min_node] + distance :
+                    dist[neighbor] = dist[min_node] + distance
+                    previous[neighbor] = min_node
 
-    print("Printing the distance of all nodes from the source node: ")
+    print("Printing the distance and path of all nodes from the source node: ")
     for i in range(vertices):
-        print(f"{source} to {i}: {dist[i]}")
-    
+        if i in graph:  # Only print for nodes that exist in the graph
+            path = get_path(previous, source, i)
+            print(f"{source} to {i}: Distance = {dist[i]}, Path = ", path if path else "No path")
+                  
     return dist
 
-def inputEdges(graph):
+def get_path(previous, source, target):
+    path = []
+    current = target
+    while current != -1:
+        path.append(current)
+        current = previous[current]
+    path.reverse()
+    return path if path[0] == source else []
+
+def inputEdges():
+    graph = {}
     
     n = int(input("Enter the no. of edges: "))
 
     print("Enter edge pair as u -> v")
     for i in range(n):
-        u = int(input(f"Pair {i}: "))
+        u = int(input(f"Pair {i+1}: "))
         v = int(input("->"))
-        dir = int(input("Directed?: "))
+        dir = int(input("Directed? (1 for yes, 0 for no): "))
         wt = int(input("Enter weight: "))
         
         if u not in graph:
             graph[u] = []
-        graph[u].append([v, wt])
+        graph[u].append((v, wt))
 
-        if (not dir):
+        if not dir:
             if v not in graph:
                 graph[v] = []
-            graph[v].append([u, wt])
+            graph[v].append((u, wt))
+        
+    return graph
 
-
+def dispGraph(graph):
+    print("\nAdjacency list: ")
+    for node, neighbors in graph.items():
+        print(f"{node}: {neighbors}")
 
 vertices = int(input("\nEnter number of vertices: "))    
-graph = [[] for i in range(vertices)]
-inputEdges(graph)
 
-print("\nAdjacency list: ")
-for i in range(vertices):
-    print(f"{i}: {graph[i]}")
+graph = inputEdges()
+
+dispGraph(graph)
 
 src = int(input("\nEnter source vertex: "))
-print(dijkstra(vertices, graph, src))
+dijkstra(vertices, graph, src)
 
 # Dijkstra's with paths to each neighbour
 
