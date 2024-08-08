@@ -34,14 +34,7 @@ def tsp_nearest_neighbor(graph):
         total_distance += min_distance
         path.append(next_city)
         current_city = next_city
-    
-    # Attempt to return to the starting city if possible
-    for(neighbor, distance) in graph[current_city]:
-        if neighbor == start_city:
-            total_distance += distance
-            path.append(start_city)
-            break
-    
+
     print("The total distance is:", total_distance)
     return path
 

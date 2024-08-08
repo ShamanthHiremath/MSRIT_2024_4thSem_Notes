@@ -16,26 +16,31 @@ def calculate_prims_mst(n, src, adj):
     # Main algorithm
     weights[src] = 0
     
+    mst_weight = 0
+    
     for _ in range(n):
         min_wt = float('inf')
-        u = -1
+        min_node = -1
         for i in range(n):
-            if not visited[i] and weights[i] < min_wt:
+            if not visited[i] and min_wt > weights[i]:
                 min_wt = weights[i]
-                u = i
+                min_node = i
 
-        visited[u] = True
-        for neighbor, weight in adj[u]:
-            v = neighbor
-            w = weight
-            if not visited[v] and weights[v] > w:
-                weights[v] = w
-                parent[v] = u
+        visited[min_node] = True
+        mst_weight += min_wt
+        
+        for neighbor, weight in adj[min_node]:
+            if not visited[neighbor] and weights[neighbor] > weight:
+                weights[neighbor] = weight
+                parent[neighbor] = min_node
 
     # Form MST
     ans_mst = []
-    for i in range(src + 1, n):
-        ans_mst.append(((parent[i], i), weights[i]))
+    for i in range(n):
+        if parent[i] != -1:
+            ans_mst.append(((parent[i], i), weights[i]))
+    
+    print(f"Minimum Spanning Tree weight: {mst_weight}")
 
     return ans_mst
 
@@ -57,7 +62,7 @@ g = [
     (5, 4, 9)
 ]
 
-def inputEdges():
+def inputGraph():
     graph = {}
     
     n = int(input("Enter the no. of edges: "))
@@ -80,7 +85,7 @@ def inputEdges():
         
     return graph
 
-graph = inputEdges()
+graph = inputGraph()
 # Sample output
 src = int(input("Enter the source vertex: "))
 print(calculate_prims_mst(len(graph), src, graph))

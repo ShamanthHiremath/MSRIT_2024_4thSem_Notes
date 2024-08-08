@@ -6,7 +6,8 @@ def copy_arr (arr):
         
 def subset_sum(arr, index, target, dp):
     if target == 0:
-        copy_arr(ansarr)
+        # copy_arr(ansarr)
+        ans.append(ansarr[:])
         return True
     
     if index >= len(arr):

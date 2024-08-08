@@ -83,7 +83,7 @@ def nQueens(board, n, column, solutions):
     for i in range(n):
         if board[i][column] == 0:
             if isSafe(board, i, column, n):
-                board[i][column] = 1
+                board[i][column] = "X" # board[i][column] == 1
                 nQueens(board, n, column - 1, solutions)
                 board[i][column] = 0
 

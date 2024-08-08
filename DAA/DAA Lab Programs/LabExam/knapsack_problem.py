@@ -14,6 +14,19 @@ def knapsack(weight, value, n, maxWeight):
                 dp[i][w] = max(dp[i-1][w], value[i] + dp[i-1][w - weight[i]])
             else:
                 dp[i][w] = dp[i-1][w]
+                
+    print(dp)
+
+    # Reconstruct the list of selected items
+    selected = []
+    w = maxWeight
+    for i in range(n-1, -1, -1):
+        if dp[i][w] != dp[i-1][w]:
+            selected.append(i)
+            print(f"Selected item: {i} with weight {weight[i]} and value {value[i]}")
+            w -= weights[i]
+    
+    print(f"Selected items: {selected[::-1]}")
 
     # The result is found in the bottom-right cell of the DP table
     return dp[n-1][maxWeight]
@@ -21,12 +34,10 @@ def knapsack(weight, value, n, maxWeight):
 def inputWeightsValues():
     n = int(input("Enter the no of items: "))
     weights = []
+    values = []
     for i in range(n):
         wt = int(input(f"Weight {i+1}: "))
         weights.append(wt)
-
-    values = []
-    for i in range(n):
         val = int(input(f"Value {i+1}: "))
         values.append(val)
 
@@ -37,7 +48,7 @@ def inputWeightsValues():
 # weight = [1, 2, 3]
 # value = [6, 10, 12]
 # n = len(weight)
-maxWeight = 5
+maxWeight = int(input("Knapsack maximum weight: "))
 
 weights , values = inputWeightsValues()
 n = len(weights)

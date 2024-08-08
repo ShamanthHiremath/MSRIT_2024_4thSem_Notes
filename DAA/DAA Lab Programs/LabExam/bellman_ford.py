@@ -1,19 +1,32 @@
+def get_path(prev, dest):
+    path = []
+    curr = dest
+    while curr != -1:
+        path.append(curr)
+        curr = prev[curr]
+    return path[::-1]
+
 def bellmanFord(n, src, edges):
     # Initialize distances to infinity
     dist = [float('inf')] * n
     dist[src] = 0  # Distance to source vertex is 0
+    prev = [-1] * n
 
     # Relax edges for n-1 iterations
     for i in range(n - 1):
         for u, v, weight in edges:
             if dist[u] != float('inf') and dist[v] > dist[u] + weight:
                 dist[v] = dist[u] + weight
+                prev[v] = u
 
     # Check for negative cycles
     for u, v, weight in edges:
         if dist[u] != float('inf') and dist[v] > dist[u] + weight:
             print("Negative cycle detected")
             exit(0)
+            
+    for i in range(n):
+        print(f"Path to vertex {i} from {src}: {get_path(prev, i)}")
 
     return dist
 
